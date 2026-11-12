@@ -1,4 +1,4 @@
-FROM node:26.13.0
+FROM node:26.13.1
 MAINTAINER mike hajj <mike.hajj@gmail.com>
 
 RUN apt-get update
