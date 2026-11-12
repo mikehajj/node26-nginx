@@ -15,10 +15,18 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --tag mikehajj/node26-nginx:latest
+      run: |
+        docker build . \
+          --tag mikehajj/node26-nginx:latest \
+          --tag mikehajj/node26-nginx:26.13.1 \
+          --tag mikehajj/node26-nginx:26
     - name: Login to Docker
       run: docker login --username mikehajj --password $docker_pwd
       env: 
         docker_pwd: ${{ secrets.DOCKER_PWD }}
     - name: Push Image to Docker Hub
-      run: docker push mikehajj/node26-nginx:latest
+      run: |
+        docker push mikehajj/node26-nginx:latest
+        docker push mikehajj/node26-nginx:26.13.1
+        docker push mikehajj/node26-nginx:26
+
